@@ -1,13 +1,14 @@
 #!/bin/env sh
 
+# $1: file name, 2: css path
 boom () {
-    pandoc --standalone "$1".md -f markdown -t html --css "$css" -o "$1".html --metadata title=" "
+    pandoc --standalone "$1".md -f markdown -t html --css "$2" -o "$1".html --metadata title=" "
 }
 
 cd "$(dirname "$0")"
 cd "../"
-css="$PWD/md.css"
-for file in $(find -type f -name "*.md"); do
+boom "index" "./md.css"
+for file in $(find "./pages/" -type f -name "*.md"); do
     name="${file%.md}"
-    boom "$name"
+    boom "$name" "../md.css"
 done
