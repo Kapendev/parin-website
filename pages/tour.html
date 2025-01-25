@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title> </title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/home/alex/Documents/code/parin-website/md.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"> </h1>
+</header>
+<p align="center">
+<a href="./pages.html">
+<img src="../assets/darin_x20.png" alt="Darin Sprite" width="120" height="128">
+</a>
+</p>
+<h1 id="tour">Tour</h1>
+<p>Welcome to the Parin game engine tour! This page will go over each
+feature of the engine and provide examples of how to use them. If you
+notice anything missing or would like to contribute, feel free to create
+an <a href="https://github.com/Kapendev/parin/issues">issue</a>!</p>
+<h2 id="getting-started">1. Getting Started</h2>
+<p>To begin, make a new folder and run inside the following commands to
+create a new project:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dub init <span class="at">-n</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dub run parin:setup</span></code></pre></div>
+<p>If everything is set up correctly, there should be an app.d file
+inside the source folder that looks like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span><span class="im"> parin</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ready<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    lockResolution<span class="op">(</span><span class="dv">320</span><span class="op">,</span> <span class="dv">180</span><span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Hello world!&quot;</span><span class="op">,</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">));</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> finish<span class="op">()</span> <span class="op">{</span> <span class="op">}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">mixin</span> runGame<span class="op">!(</span>ready<span class="op">,</span> update<span class="op">,</span> finish<span class="op">);</span></span></code></pre></div>
+<p>This code will create a window that displays the message “Hello
+world!”. Here is a breakdown of how it works:</p>
+<ol type="1">
+<li><p>The Ready Function</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ready<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    lockResolution<span class="op">(</span><span class="dv">320</span><span class="op">,</span> <span class="dv">180</span><span class="op">);</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This function is the starting point of the game. It is called once
+when the game starts and, in this example, locks the game resolution to
+320x180.</p></li>
+<li><p>The Update Function</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Hello world!&quot;</span><span class="op">,</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">));</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This function is the main loop of the game. It is called every frame
+while the game is running and, in this example, draws the message “Hello
+world!” at position (8, 8). The <code>return false</code> statement at
+the end indicates that the game should continue running. If
+<code>true</code> were returned, then the game would stop
+running.</p></li>
+<li><p>The Finish Function</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> finish<span class="op">()</span> <span class="op">{</span> <span class="op">}</span></span></code></pre></div>
+<p>This function is the ending point of the game. It is called once when
+the game ends and, in this example, does nothing.</p></li>
+<li><p>The Mixin</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">mixin</span> runGame<span class="op">!(</span>ready<span class="op">,</span> update<span class="op">,</span> finish<span class="op">);</span></span></code></pre></div>
+<p>This mixin sets up a main function that opens a window and calls the
+ready, update and finish functions. By default, the window has a size of
+960x540.</p></li>
+</ol>
+<p>In essence, a Parin game typically relies on three functions:</p>
+<ul>
+<li>A ready function.</li>
+<li>An update function.</li>
+<li>A finish function.</li>
+</ul>
+<h2 id="modules">2. Modules</h2>
+<p>Parin consists of the following modules:</p>
+<ul>
+<li>parin.engine</li>
+<li>parin.map</li>
+<li>parin.sprite</li>
+<li>parin.story</li>
+<li>parin.timer</li>
+<li>parin.ui</li>
+</ul>
+<p>The <code>parin.engine</code> module is the only mandatory module for
+creating a game. All other modules are optional and can be included as
+needed. The <code>import parin;</code> statement in the example above is
+a convenience import that includes all modules, so you don’t need to
+import them individually.</p>
+<h2 id="input">3. Input</h2>
+<p>Parin provides a set of input functions inside the
+<code>parin.engine</code> module.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Keyboard key<span class="op">);</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Mouse key<span class="op">);</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Keyboard key<span class="op">);</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Mouse key<span class="op">);</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Keyboard key<span class="op">);</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Mouse key<span class="op">);</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>Keyboard dequeuePressedKey<span class="op">();</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="dt">dchar</span> dequeuePressedRune<span class="op">();</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>Vec2 wasd<span class="op">();</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>Vec2 wasdPressed<span class="op">();</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>Vec2 wasdReleased<span class="op">();</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>Vec2 mouse<span class="op">();</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>Vec2 deltaMouse<span class="op">();</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> deltaWheel<span class="op">();</span></span></code></pre></div>
+<p>Below is an example that moves text within the window using the WASD
+or arrow keys:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto</span> position <span class="op">=</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">);</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    position <span class="op">+=</span> wasd<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;text&quot;</span><span class="op">,</span> position<span class="op">);</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="drawing">4. Drawing</h2>
+<p>Parin provides a set of drawing functions inside the
+<code>parin.engine</code> module. While drawing is not pixel-perfect by
+default, it can be by calling the <code>setIsPixelPerfect</code> or
+<code>setIsPixelSnapped</code> functions.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawRect<span class="op">(</span>Rect area<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawHollowRect<span class="op">(</span>Rect area<span class="op">,</span> <span class="dt">float</span> thickness<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawCirc<span class="op">(</span>Circ area<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawHollowCirc<span class="op">(</span>Circ area<span class="op">,</span> <span class="dt">float</span> thickness<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawVec2<span class="op">(</span>Vec2 point<span class="op">,</span> <span class="dt">float</span> size<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawLine<span class="op">(</span>Line area<span class="op">,</span> <span class="dt">float</span> size<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTexture<span class="op">(</span>Texture texture<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTextureArea<span class="op">(</span>Texture texture<span class="op">,</span> Rect area<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTexturePatch<span class="op">(</span>Texture texture<span class="op">,</span> Rect area<span class="op">,</span> Rect target<span class="op">,</span> <span class="dt">bool</span> isTiled<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawViewport<span class="op">(</span>Viewport viewport<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawViewportArea<span class="op">(</span>Viewport viewport<span class="op">,</span> Rect area<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawRune<span class="op">(</span>Font font<span class="op">,</span> <span class="dt">dchar</span> rune<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawText<span class="op">(</span>Font font<span class="op">,</span> IStr text<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawDebugText<span class="op">(</span>IStr text<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span></code></pre></div>
+<p>Additional drawing functions can be found in other modules, such as
+<code>parin.sprite</code>.</p>
+<h3 id="draw-options">Draw Options</h3>
+<p>Draw options are used for configuring drawing parameters. The data
+structure looks something like this:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="wa">struct</span> DrawOptions <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    Vec2 origin <span class="op">=</span> Vec2<span class="op">(</span><span class="fl">0.0f</span><span class="op">);</span>             <span class="co">///</span><span class="do"> The origin point of the drawn object. This value can be used to force a specific value when needed and is not used if it is set to zero.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    Vec2 scale <span class="op">=</span> Vec2<span class="op">(</span><span class="fl">1.0f</span><span class="op">);</span>              <span class="co">///</span><span class="do"> The scale of the drawn object.</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> rotation <span class="op">=</span> <span class="fl">0.0f</span><span class="op">;</span>                <span class="co">///</span><span class="do"> The rotation of the drawn object, in degrees.</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    Color color <span class="op">=</span> white<span class="op">;</span>                  <span class="co">///</span><span class="do"> The color of the drawn object.</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    Hook hook <span class="op">=</span> Hook.topLeft<span class="op">;</span>             <span class="co">///</span><span class="do"> A value representing the origin point of the drawn object when origin is set to zero.</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    Flip flip <span class="op">=</span> Flip.none<span class="op">;</span>                <span class="co">///</span><span class="do"> A value representing flipping orientations.</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    Alignment alignment <span class="op">=</span> Alignment.left<span class="op">;</span> <span class="co">///</span><span class="do"> A value represeting alignment orientations.</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> alignmentWidth <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>               <span class="co">///</span><span class="do"> The width of the aligned object. It is used as a hint and is not enforced. Usually used for text drawing.</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> visibilityRatio <span class="op">=</span> <span class="fl">1.0f</span><span class="op">;</span>         <span class="co">///</span><span class="do"> Controls the visibility ratio of the object, where 0.0 means fully hidden and 1.0 means fully visible. Usually used for text drawing.</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> isRightToLeft <span class="op">=</span> <span class="at">false</span><span class="op">;</span>           <span class="co">///</span><span class="do"> Indicates whether the content of the object flows in a right-to-left direction, such as for Arabic or Hebrew text. Usually used for text drawing.</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Some of these parameters can also be configured via the
+constructors.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="at">this</span><span class="op">(</span><span class="dt">float</span> rotation<span class="op">);</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">this</span><span class="op">(</span>Vec2 scale<span class="op">);</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">this</span><span class="op">(</span>Color color<span class="op">);</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">this</span><span class="op">(</span>Hook hook<span class="op">);</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">this</span><span class="op">(</span>Flip flip<span class="op">);</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="at">this</span><span class="op">(</span>Alignment alignment<span class="op">,</span> <span class="dt">int</span> alignmentWidth <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span></code></pre></div>
+<h2 id="sound">5. Sound</h2>
+<p>Parin provides a set of sound functions inside the
+<code>parin.engine</code> module.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> playSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> stopSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> pauseSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> resumeSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> updateSound<span class="op">(</span>Sound sound<span class="op">);</span></span></code></pre></div>
+<h2 id="loading-and-saving-resources">6. Loading and Saving
+Resources</h2>
+<p>Parin provides a set of loading functions inside the
+<code>parin.engine</code> module. Functions that start with the word
+load/save will always try to read/write resources from/to the assets
+folder. These functions handle both forward slashes and backslashes in
+file paths, ensuring compatibility across operating systems.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>TextureId loadTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Texture loadRawTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>FontId loadFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>FontId loadFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>SoundId loadSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Sound loadRawSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>Fault loadRawTextIntoBuffer<span class="op">(</span>IStr path<span class="op">,</span> <span class="fu">ref</span> LStr buffer<span class="op">);</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>LStr loadRawText<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>IStr loadTempText<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>Fault saveText<span class="op">(</span>IStr path<span class="op">,</span> IStr text<span class="op">);</span></span></code></pre></div>
+<p>Additional loading functions can be found in other modules, such as
+<code>parin.map</code>.</p>
+<h3 id="managed-resources">Managed Resources</h3>
+<p>Managed resources are cached by their path they were loaded with. To
+free these resources, use the <code>freeResources</code> function or the
+<code>free</code> method on the resource identifier. The resource
+identifier is automatically invalidated when the resource is freed.</p>
+<h3 id="raw-resources">Raw Resources</h3>
+<p>Raw resources are managed directly by the user and are not cached or
+grouped. They must be freed manually when no longer needed.</p>
+<h3 id="temporary-resources">Temporary Resources</h3>
+<p>Temporary resources are only valid until the function that provided
+them is called again. They don’t need to be freed manually.</p>
+<h2 id="sprites-and-tile-maps">7. Sprites and Tile Maps</h2>
+<p>Sprites and tile maps can be implemented in various ways. To avoid
+enforcing a specific approach, Parin provides optional modules for these
+features, allowing users to include or omit them as needed. Parin
+provides a sprite type inside the <code>parin.sprite</code> module and a
+tile map type inside the <code>parin.map</code> module.</p>
+<p><br> Links: <a href="./pages.html">Pages</a> <a
+href="https://github.com/Kapendev/parin">GitHub</a> <a
+href="https://x.com/Kapendev">X</a> <a
+href="https://bsky.app/profile/kapendev.bsky.social">Bluesky</a> <a
+href="https://kapendev.itch.io/">Itch</a></p>
+</body>
+</html>

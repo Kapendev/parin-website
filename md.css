@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+html, body {
+    padding: 1em;
+    margin: auto;
+    max-width: 44em;
+    background: #0D0D0D;
+    font-size: 115%;
+	}
+body {
+    font-family: "Roboto", serif;
+	color: #B8AD91;
+	line-height: 1.4;
+	text-align: left;
+	}
+header, nav, article, footer {
+	width: 700px;
+	margin: 0 auto;
+	}
+article {
+	margin-top: 4em;
+	margin-bottom: 4em;
+	min-height: 400px;
+	}
+footer {
+	margin-bottom: 50px;
+	}
+nav {
+	font-size: .9em;
+	font-style: italic;
+	border-bottom: 1px solid #ddd;
+	padding: 1em 0;
+	}
+
+/* Typography
+-------------------------------------------------------- */
+
+h1 {
+	margin-top: 0;
+	font-weight: bold;
+	}
+h2 {
+	font-weight: bold;
+	font-style: normal;
+	}
+h3 {
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 2em;
+	}
+h4 {
+	font-weight: normal;
+	font-style: italic;
+	margin-top: 2em;
+	}
+ul {
+	list-style: disc;
+	padding-left: 1.2em;
+	}
+ol {
+	padding-left: 1.2em;
+	}
+blockquote {
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: 1px solid #ddd;
+	}
+pre {
+	padding-left: 1.2em;
+    }
+code {
+	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
+	font-size: .9em;
+	background: #0D0D0D;
+	}
+a {
+	color: #B8AD91;
+	text-decoration: underline;
+	}
+h1 a, h1 a:hover {
+	color: #333;
+	text-decoration: none;
+	}
+hr {
+	color: #ddd;
+	height: 1px;
+	margin: 2em 0;
+	border-top: solid 1px #ddd;
+	border-bottom: none;
+	border-left: 0;
+	border-right: 0;
+	}
+
+/* Home Page
+--------------------------- */
+
+body#index li {
+	margin-bottom: 1em;
+	}
+
+
+/* iPad
+-------------------------------------------------------- */
+@media only screen and (max-device-width: 1024px) {
+body {
+	font-size: 120%;
+	line-height: 1.4;
+	}
+} /* @iPad */
+
+/* iPhone
+-------------------------------------------------------- */
+@media only screen and (max-device-width: 480px) {
+body {
+	text-align: left;
+	}
+article, footer {
+	width: auto;
+	}
+article {
+	padding: 0 10px;
+	}
+} /* @iPhone */

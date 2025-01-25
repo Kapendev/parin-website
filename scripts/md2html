@@ -1,0 +1,13 @@
+#!/bin/env sh
+
+boom () {
+    pandoc --standalone "$1".md -f markdown -t html --css "$css" -o "$1".html --metadata title=" "
+}
+
+cd "$(dirname "$0")"
+cd "../"
+css="$PWD/md.css"
+for file in $(find -type f -name "*.md"); do
+    name="${file%.md}"
+    boom "$name"
+done
