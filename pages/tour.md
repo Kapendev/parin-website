@@ -140,13 +140,13 @@ Vec2 deltaMouse();
 float deltaWheel();
 ```
 
-Below are examples showing how to use these input functions to move some text.
+Below are examples showing how to use these input functions to move text.
 
 * Using the Mouse
 
     ```d
     bool update(float dt) {
-        drawDebugText("text", mouse);
+        drawDebugText("Text", mouse);
         return false;
     }
     ```
@@ -159,7 +159,7 @@ Below are examples showing how to use these input functions to move some text.
     bool update(float dt) {
         position.x += Keyboard.right.isDown - Keyboard.left.isDown;
         position.y += Keyboard.down.isDown - Keyboard.up.isDown;
-        drawDebugText("text", position);
+        drawDebugText("Text", position);
         return false;
     }
     ```
@@ -172,7 +172,7 @@ Below are examples showing how to use these input functions to move some text.
     bool update(float dt) {
         position.x += 'd'.isDown - 'a'.isDown;
         position.y += 's'.isDown - 'w'.isDown;
-        drawDebugText("text", position);
+        drawDebugText("Text", position);
         return false;
     }
     ```
@@ -184,7 +184,7 @@ Below are examples showing how to use these input functions to move some text.
 
     bool update(float dt) {
         position += wasd;
-        drawDebugText("text", position);
+        drawDebugText("Text", position);
         return false;
     }
     ```
@@ -214,8 +214,6 @@ void drawText(Font font, IStr text, Vec2 position, DrawOptions options = DrawOpt
 void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions());
 ```
 
-Drawing is not pixel-perfect by default, but it can be by calling the `setIsPixelPerfect` or `setIsPixelSnapped` functions.
-
 ### Draw Options
 
 Draw options are used for configuring drawing parameters.
@@ -236,47 +234,41 @@ struct DrawOptions {
 }
 ```
 
-Here is a breakdown of how every option works:
+Here is a breakdown of what every option is:
 
-* origin:
+* origin: The origin point of the object.
+* scale: The scale of the object.
+* rotation: The rotation of the object, in degrees.
+* color: The color of the object, in RGBA.
+* hook: A value representing the origin point of the object when origin is zero.
+* flip: A value representing flipping orientations.
+* alignment: A value represeting alignment orientations.
+* alignmentWidth: The width of the aligned object.
+* visibilityRatio: The visibility ratio of the object, between 0.0 and 1.0.
+* isRightToLeft: A flow indicator for things such as Arabic or Hebrew text.
 
-    The origin point of the drawn object. This value can be used to force a specific value when needed and is not used if it is set to zero.
+Below are examples showing how to use these options to change how text looks.
 
-* scale:
+* Changing the Alignment
 
-    The scale of the drawn object.
+    ```d
+    bool update(float dt) {
+        auto options = DrawOptions(Alignment.right);
+        drawDebugText("Hello.\nThis is some text.", Vec2(8), options);
+        return false;
+    }
+    ```
 
-* rotation:
+* Changing the Size and Origin
 
-    The rotation of the drawn object, in degrees.
-
-* color:
-
-    The color of the drawn object.
-
-* hook:
-
-    A value representing the origin point of the drawn object when origin is set to zero.
-
-* flip:
-
-    A value representing flipping orientations.
-
-* alignment:
-
-    A value represeting alignment orientations.
-
-* alignmentWidth:
-
-    The width of the aligned object. It is used as a hint and is not enforced. Usually used for text drawing
-
-* visibilityRatio:
-
-    Controls the visibility ratio of the object, where 0.0 means fully hidden and 1.0 means fully visible. Usually used for text drawing.
-
-* isRightToLeft:
-
-    Indicates whether the content of the object flows in a right-to-left direction, such as for Arabic or Hebrew text. Usually used for text drawing.
+    ```d
+    bool update(float dt) {
+        auto options = DrawOptions(Hook.center);
+        options.scale = Vec2(4 + sin(elapsedTime * 4));
+        drawDebugText("Text", resolution * Vec2(0.5), options);
+        return false;
+    }
+    ```
 
 ## 5. Sound
 
