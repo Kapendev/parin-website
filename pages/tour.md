@@ -6,12 +6,13 @@
 
 # Tour
 
-Welcome to the Parin game engine tour! 
+Welcome to the Parin game engine tour.
 This page will go over each feature of the engine and provide examples of how to use them.
 If you notice anything missing or would like to contribute, feel free to create an [issue](https://github.com/Kapendev/parin/issues)!
 
 ## 1. Getting Started
 
+This guide shows how to install Parin and its dependencies using [DUB](https://dub.pm/).
 To begin, make a new folder and run inside the following commands to create a new project:
 
 ```cmd
@@ -20,7 +21,7 @@ dub run parin:setup
 ```
 
 If everything is set up correctly,
-there should be an app.d file inside the source folder that looks like this:
+there should be an app.d file inside the generated source folder that looks like this:
 
 ```d
 import parin;
@@ -104,11 +105,12 @@ Parin consists of the following modules:
 
 The `parin.engine` module is the only mandatory module for creating a game.
 All other modules are optional and can be included as needed.
-The `import parin;` statement in the example above is a convenience import that includes all modules, so you don’t need to import them individually.
+The `import parin;` statement in the example above is a convenience import that includes all modules.
 
 ## 3. Input
 
 Parin provides a set of input functions inside the `parin.engine` module.
+These include:
 
 ```d
 bool isDown(char key);
@@ -138,22 +140,59 @@ Vec2 deltaMouse();
 float deltaWheel();
 ```
 
-Below is an example that moves text within the window using the WASD or arrow keys:
+Below are examples showing how to use these input functions to move some text.
 
-```d
-auto position = Vec2(8);
+* Using the Mouse
 
-bool update(float dt) {
-    position += wasd;
-    drawDebugText("text", position);
-    return false;
-}
-```
+    ```d
+    bool update(float dt) {
+        drawDebugText("text", mouse);
+        return false;
+    }
+    ```
+
+* Using the Arrow Keys
+
+    ```d
+    auto position = Vec2(8);
+
+    bool update(float dt) {
+        position.x += Keyboard.right.isDown - Keyboard.left.isDown;
+        position.y += Keyboard.down.isDown - Keyboard.up.isDown;
+        drawDebugText("text", position);
+        return false;
+    }
+    ```
+
+* Using the WASD Keys
+
+    ```d
+    auto position = Vec2(8);
+
+    bool update(float dt) {
+        position.x += 'd'.isDown - 'a'.isDown;
+        position.y += 's'.isDown - 'w'.isDown;
+        drawDebugText("text", position);
+        return false;
+    }
+    ```
+
+* Using the WASD or Arrow Keys
+
+    ```d
+    auto position = Vec2(8);
+
+    bool update(float dt) {
+        position += wasd;
+        drawDebugText("text", position);
+        return false;
+    }
+    ```
 
 ## 4. Drawing
 
 Parin provides a set of drawing functions inside the `parin.engine` module.
-While drawing is not pixel-perfect by default, it can be by calling the `setIsPixelPerfect` or `setIsPixelSnapped` functions.
+These include:
 
 ```d
 void drawRect(Rect area, Color color = white);
@@ -175,37 +214,69 @@ void drawText(Font font, IStr text, Vec2 position, DrawOptions options = DrawOpt
 void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions());
 ```
 
-Additional drawing functions can be found in other modules, such as `parin.sprite`.
+Drawing is not pixel-perfect by default, but it can be by calling the `setIsPixelPerfect` or `setIsPixelSnapped` functions.
 
 ### Draw Options
 
-Draw options are used for configuring drawing parameters. The data structure looks something like this:
+Draw options are used for configuring drawing parameters.
+The data structure looks like this:
 
 ```d
 struct DrawOptions {
-    Vec2 origin = Vec2(0.0f);             /// The origin point of the drawn object. This value can be used to force a specific value when needed and is not used if it is set to zero.
-    Vec2 scale = Vec2(1.0f);              /// The scale of the drawn object.
-    float rotation = 0.0f;                /// The rotation of the drawn object, in degrees.
-    Color color = white;                  /// The color of the drawn object.
-    Hook hook = Hook.topLeft;             /// A value representing the origin point of the drawn object when origin is set to zero.
-    Flip flip = Flip.none;                /// A value representing flipping orientations.
-    Alignment alignment = Alignment.left; /// A value represeting alignment orientations.
-    int alignmentWidth = 0;               /// The width of the aligned object. It is used as a hint and is not enforced. Usually used for text drawing.
-    float visibilityRatio = 1.0f;         /// Controls the visibility ratio of the object, where 0.0 means fully hidden and 1.0 means fully visible. Usually used for text drawing.
-    bool isRightToLeft = false;           /// Indicates whether the content of the object flows in a right-to-left direction, such as for Arabic or Hebrew text. Usually used for text drawing.
+    Vec2 origin = Vec2(0.0f);
+    Vec2 scale = Vec2(1.0f);
+    float rotation = 0.0f;
+    Color color = white;
+    Hook hook = Hook.topLeft;
+    Flip flip = Flip.none;
+    Alignment alignment = Alignment.left;
+    int alignmentWidth = 0;
+    float visibilityRatio = 1.0f;
+    bool isRightToLeft = false;
 }
 ```
 
-Some of these parameters can also be configured via the constructors.
+Here is a breakdown of how every option works:
 
-```d
-this(float rotation);
-this(Vec2 scale);
-this(Color color);
-this(Hook hook);
-this(Flip flip);
-this(Alignment alignment, int alignmentWidth = 0);
-```
+* origin:
+
+    The origin point of the drawn object. This value can be used to force a specific value when needed and is not used if it is set to zero.
+
+* scale:
+
+    The scale of the drawn object.
+
+* rotation:
+
+    The rotation of the drawn object, in degrees.
+
+* color:
+
+    The color of the drawn object.
+
+* hook:
+
+    A value representing the origin point of the drawn object when origin is set to zero.
+
+* flip:
+
+    A value representing flipping orientations.
+
+* alignment:
+
+    A value represeting alignment orientations.
+
+* alignmentWidth:
+
+    The width of the aligned object. It is used as a hint and is not enforced. Usually used for text drawing
+
+* visibilityRatio:
+
+    Controls the visibility ratio of the object, where 0.0 means fully hidden and 1.0 means fully visible. Usually used for text drawing.
+
+* isRightToLeft:
+
+    Indicates whether the content of the object flows in a right-to-left direction, such as for Arabic or Hebrew text. Usually used for text drawing.
 
 ## 5. Sound
 
