@@ -319,7 +319,7 @@ Fault saveText(IStr path, IStr text);
 
 Functions that start with the word load or save will always try to read/write resources from/to the assets folder.
 They handle both forward slashes and backslashes in file paths, ensuring compatibility across operating systems.
-Additionally, resources are deviced into three groups. Managed, raw and temporary.
+Additionally, resources are separated into three groups. Managed, raw and temporary.
 
 ### Managed Resources
 
