@@ -1,0 +1,16 @@
+#!/bin/env sh
+
+## Converts a markdown file to a html file.
+## $1: The name of the markdown file.
+## $2: The path to the css file.
+to_html () {
+    pandoc --standalone "$1.md" -f markdown -t html --css "$2" -o "$1.html" --metadata title=" "
+}
+
+cd "$(dirname "$0")"
+cd "../"
+to_html "index" "./md.css"
+for file in $(find "./pages/" -type f -name "*.md"); do
+    name="${file%.md}"
+    to_html "$name" "../md.css"
+done

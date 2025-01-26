@@ -109,8 +109,15 @@ inside the following commands to create a new project:</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dub init <span class="at">-n</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dub run parin:setup</span></code></pre></div>
-<p>If everything is set up correctly, there should be an app.d file
-inside the generated source folder that looks like this:</p>
+<p>If everything is set up correctly, there should be some new files
+inside the folder. Three of them are particularly important:</p>
+<ul>
+<li>source: Contains the source code of the game.</li>
+<li>assets: Contains the assets of the game.</li>
+<li>web: Used for exporting the game to the web.</li>
+</ul>
+<p>Additionally, an app.d is inside the source folder that looks like
+this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span><span class="im"> parin</span><span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ready<span class="op">()</span> <span class="op">{</span></span>
@@ -162,6 +169,9 @@ ready, update and finish functions. By default, the window has a size of
 <li>An update function.</li>
 <li>A finish function.</li>
 </ul>
+<p>To run the game, use the following command:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dub run</span></code></pre></div>
 <h2 id="modules">2. Modules</h2>
 <p>Parin consists of the following modules:</p>
 <ul>
@@ -179,105 +189,105 @@ a convenience import that includes all modules.</p>
 <h2 id="input">3. Input</h2>
 <p>Parin provides a set of input functions inside the
 <code>parin.engine</code> module. These include:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Keyboard key<span class="op">);</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Mouse key<span class="op">);</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Keyboard key<span class="op">);</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Mouse key<span class="op">);</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Keyboard key<span class="op">);</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Mouse key<span class="op">);</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>Keyboard dequeuePressedKey<span class="op">();</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="dt">dchar</span> dequeuePressedRune<span class="op">();</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>Vec2 wasd<span class="op">();</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>Vec2 wasdPressed<span class="op">();</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>Vec2 wasdReleased<span class="op">();</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>Vec2 mouse<span class="op">();</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>Vec2 deltaMouse<span class="op">();</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> deltaWheel<span class="op">();</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Keyboard key<span class="op">);</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Mouse key<span class="op">);</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isDown<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Keyboard key<span class="op">);</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Mouse key<span class="op">);</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPressed<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span><span class="dt">char</span> key<span class="op">);</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Keyboard key<span class="op">);</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Mouse key<span class="op">);</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isReleased<span class="op">(</span>Gamepad key<span class="op">,</span> <span class="dt">int</span> id <span class="op">=</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>Keyboard dequeuePressedKey<span class="op">();</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="dt">dchar</span> dequeuePressedRune<span class="op">();</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>Vec2 wasd<span class="op">();</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>Vec2 wasdPressed<span class="op">();</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>Vec2 wasdReleased<span class="op">();</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>Vec2 mouse<span class="op">();</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>Vec2 deltaMouse<span class="op">();</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> deltaWheel<span class="op">();</span></span></code></pre></div>
 <p>Below are examples showing how to use these input functions to move
 text.</p>
 <ul>
 <li><p>Using the Mouse</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode d"><code class="sourceCode d"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> mouse<span class="op">);</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
-<li><p>Using the Arrow Keys</p>
 <div class="sourceCode" id="cb9"><pre
-class="sourceCode d"><code class="sourceCode d"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto</span> position <span class="op">=</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">);</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    position.x <span class="op">+=</span> Keyboard.right.isDown <span class="op">-</span> Keyboard.left.isDown<span class="op">;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    position.y <span class="op">+=</span> Keyboard.down.isDown <span class="op">-</span> Keyboard.up.isDown<span class="op">;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> position<span class="op">);</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
-<li><p>Using the WASD Keys</p>
+class="sourceCode d"><code class="sourceCode d"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> mouse<span class="op">);</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p>Using the Arrow Keys</p>
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode d"><code class="sourceCode d"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto</span> position <span class="op">=</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">);</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    position.x <span class="op">+=</span> <span class="ch">&#39;d&#39;</span>.isDown <span class="op">-</span> <span class="ch">&#39;a&#39;</span>.isDown<span class="op">;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    position.y <span class="op">+=</span> <span class="ch">&#39;s&#39;</span>.isDown <span class="op">-</span> <span class="ch">&#39;w&#39;</span>.isDown<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    position.x <span class="op">+=</span> Keyboard.right.isDown <span class="op">-</span> Keyboard.left.isDown<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    position.y <span class="op">+=</span> Keyboard.down.isDown <span class="op">-</span> Keyboard.up.isDown<span class="op">;</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> position<span class="op">);</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
-<li><p>Using the WASD or Arrow Keys</p>
+<li><p>Using the WASD Keys</p>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode d"><code class="sourceCode d"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto</span> position <span class="op">=</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">);</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    position <span class="op">+=</span> wasd<span class="op">;</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> position<span class="op">);</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    position.x <span class="op">+=</span> <span class="ch">&#39;d&#39;</span>.isDown <span class="op">-</span> <span class="ch">&#39;a&#39;</span>.isDown<span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    position.y <span class="op">+=</span> <span class="ch">&#39;s&#39;</span>.isDown <span class="op">-</span> <span class="ch">&#39;w&#39;</span>.isDown<span class="op">;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> position<span class="op">);</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p>Using the WASD or Arrow Keys</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode d"><code class="sourceCode d"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">auto</span> position <span class="op">=</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">);</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    position <span class="op">+=</span> wasd<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> position<span class="op">);</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
 </ul>
 <h2 id="drawing">4. Drawing</h2>
 <p>Parin provides a set of drawing functions inside the
 <code>parin.engine</code> module. These include:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawRect<span class="op">(</span>Rect area<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawHollowRect<span class="op">(</span>Rect area<span class="op">,</span> <span class="dt">float</span> thickness<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawCirc<span class="op">(</span>Circ area<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawHollowCirc<span class="op">(</span>Circ area<span class="op">,</span> <span class="dt">float</span> thickness<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawVec2<span class="op">(</span>Vec2 point<span class="op">,</span> <span class="dt">float</span> size<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawLine<span class="op">(</span>Line area<span class="op">,</span> <span class="dt">float</span> size<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTexture<span class="op">(</span>Texture texture<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTextureArea<span class="op">(</span>Texture texture<span class="op">,</span> Rect area<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTexturePatch<span class="op">(</span>Texture texture<span class="op">,</span> Rect area<span class="op">,</span> Rect target<span class="op">,</span> <span class="dt">bool</span> isTiled<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawViewport<span class="op">(</span>Viewport viewport<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawViewportArea<span class="op">(</span>Viewport viewport<span class="op">,</span> Rect area<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawRune<span class="op">(</span>Font font<span class="op">,</span> <span class="dt">dchar</span> rune<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawText<span class="op">(</span>Font font<span class="op">,</span> IStr text<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawDebugText<span class="op">(</span>IStr text<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawRect<span class="op">(</span>Rect area<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawHollowRect<span class="op">(</span>Rect area<span class="op">,</span> <span class="dt">float</span> thickness<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawCirc<span class="op">(</span>Circ area<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawHollowCirc<span class="op">(</span>Circ area<span class="op">,</span> <span class="dt">float</span> thickness<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawVec2<span class="op">(</span>Vec2 point<span class="op">,</span> <span class="dt">float</span> size<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawLine<span class="op">(</span>Line area<span class="op">,</span> <span class="dt">float</span> size<span class="op">,</span> Color color <span class="op">=</span> white<span class="op">);</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTexture<span class="op">(</span>Texture texture<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTextureArea<span class="op">(</span>Texture texture<span class="op">,</span> Rect area<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawTexturePatch<span class="op">(</span>Texture texture<span class="op">,</span> Rect area<span class="op">,</span> Rect target<span class="op">,</span> <span class="dt">bool</span> isTiled<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawViewport<span class="op">(</span>Viewport viewport<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawViewportArea<span class="op">(</span>Viewport viewport<span class="op">,</span> Rect area<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawRune<span class="op">(</span>Font font<span class="op">,</span> <span class="dt">dchar</span> rune<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawText<span class="op">(</span>Font font<span class="op">,</span> IStr text<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> drawDebugText<span class="op">(</span>IStr text<span class="op">,</span> Vec2 position<span class="op">,</span> DrawOptions options <span class="op">=</span> DrawOptions<span class="op">());</span></span></code></pre></div>
 <h3 id="draw-options">Draw Options</h3>
 <p>Draw options are used for configuring drawing parameters. The data
 structure looks like this:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="wa">struct</span> DrawOptions <span class="op">{</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    Vec2 origin <span class="op">=</span> Vec2<span class="op">(</span><span class="fl">0.0f</span><span class="op">);</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    Vec2 scale <span class="op">=</span> Vec2<span class="op">(</span><span class="fl">1.0f</span><span class="op">);</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> rotation <span class="op">=</span> <span class="fl">0.0f</span><span class="op">;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    Color color <span class="op">=</span> white<span class="op">;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    Hook hook <span class="op">=</span> Hook.topLeft<span class="op">;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    Flip flip <span class="op">=</span> Flip.none<span class="op">;</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    Alignment alignment <span class="op">=</span> Alignment.left<span class="op">;</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> alignmentWidth <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> visibilityRatio <span class="op">=</span> <span class="fl">1.0f</span><span class="op">;</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> isRightToLeft <span class="op">=</span> <span class="at">false</span><span class="op">;</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="wa">struct</span> DrawOptions <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    Vec2 origin <span class="op">=</span> Vec2<span class="op">(</span><span class="fl">0.0f</span><span class="op">);</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    Vec2 scale <span class="op">=</span> Vec2<span class="op">(</span><span class="fl">1.0f</span><span class="op">);</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> rotation <span class="op">=</span> <span class="fl">0.0f</span><span class="op">;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    Color color <span class="op">=</span> white<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    Hook hook <span class="op">=</span> Hook.topLeft<span class="op">;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    Flip flip <span class="op">=</span> Flip.none<span class="op">;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    Alignment alignment <span class="op">=</span> Alignment.left<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> alignmentWidth <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> visibilityRatio <span class="op">=</span> <span class="fl">1.0f</span><span class="op">;</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> isRightToLeft <span class="op">=</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Here is a breakdown of what every option is:</p>
 <ul>
 <li>origin: The origin point of the object.</li>
@@ -298,29 +308,29 @@ text.</li>
 text looks.</p>
 <ul>
 <li><p>Changing the Alignment</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode d"><code class="sourceCode d"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">auto</span> options <span class="op">=</span> DrawOptions<span class="op">(</span>Alignment.right<span class="op">);</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Hello.</span><span class="sc">\n</span><span class="st">This is some text.&quot;</span><span class="op">,</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">),</span> options<span class="op">);</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
-<li><p>Changing the Size and Origin</p>
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode d"><code class="sourceCode d"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">auto</span> options <span class="op">=</span> DrawOptions<span class="op">(</span>Hook.center<span class="op">);</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    options.scale <span class="op">=</span> Vec2<span class="op">(</span><span class="dv">4</span> <span class="op">+</span> sin<span class="op">(</span>elapsedTime <span class="op">*</span> <span class="dv">4</span><span class="op">));</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> resolution <span class="op">*</span> Vec2<span class="op">(</span><span class="fl">0.5</span><span class="op">),</span> options<span class="op">);</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">auto</span> options <span class="op">=</span> DrawOptions<span class="op">(</span>Alignment.right<span class="op">);</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Hello.</span><span class="sc">\n</span><span class="st">This is some text.&quot;</span><span class="op">,</span> Vec2<span class="op">(</span><span class="dv">8</span><span class="op">),</span> options<span class="op">);</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p>Changing the Size and Origin</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode d"><code class="sourceCode d"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">auto</span> options <span class="op">=</span> DrawOptions<span class="op">(</span>Hook.center<span class="op">);</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    options.scale <span class="op">=</span> Vec2<span class="op">(</span><span class="dv">4</span> <span class="op">+</span> sin<span class="op">(</span>elapsedTime <span class="op">*</span> <span class="dv">4</span><span class="op">));</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    drawDebugText<span class="op">(</span><span class="st">&quot;Text&quot;</span><span class="op">,</span> resolution <span class="op">*</span> Vec2<span class="op">(</span><span class="fl">0.5</span><span class="op">),</span> options<span class="op">);</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">false</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
 </ul>
 <h2 id="sound">5. Sound</h2>
 <p>Parin provides a set of sound functions inside the
 <code>parin.engine</code> module.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> playSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> stopSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> pauseSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> resumeSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> updateSound<span class="op">(</span>Sound sound<span class="op">);</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> playSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> stopSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> pauseSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> resumeSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> updateSound<span class="op">(</span>Sound sound<span class="op">);</span></span></code></pre></div>
 <h2 id="loading-and-saving-resources">6. Loading and Saving
 Resources</h2>
 <p>Parin provides a set of loading functions inside the
@@ -328,22 +338,22 @@ Resources</h2>
 load/save will always try to read/write resources from/to the assets
 folder. These functions handle both forward slashes and backslashes in
 file paths, ensuring compatibility across operating systems.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>TextureId loadTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Texture loadRawTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>FontId loadFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>FontId loadFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>SoundId loadSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Sound loadRawSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>Fault loadRawTextIntoBuffer<span class="op">(</span>IStr path<span class="op">,</span> <span class="fu">ref</span> LStr buffer<span class="op">);</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>LStr loadRawText<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>IStr loadTempText<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>Fault saveText<span class="op">(</span>IStr path<span class="op">,</span> IStr text<span class="op">);</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>TextureId loadTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Texture loadRawTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>FontId loadFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>FontId loadFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>SoundId loadSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Sound loadRawSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>Fault loadRawTextIntoBuffer<span class="op">(</span>IStr path<span class="op">,</span> <span class="fu">ref</span> LStr buffer<span class="op">);</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>LStr loadRawText<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>IStr loadTempText<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>Fault saveText<span class="op">(</span>IStr path<span class="op">,</span> IStr text<span class="op">);</span></span></code></pre></div>
 <p>Additional loading functions can be found in other modules, such as
 <code>parin.map</code>.</p>
 <h3 id="managed-resources">Managed Resources</h3>

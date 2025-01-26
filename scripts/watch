@@ -1,0 +1,5 @@
+#!/bin/env sh
+
+cd "$(dirname "$0")"
+cd "../"
+find "./pages/" -type f -name "*.md" | entr -p ./scripts/tohtml

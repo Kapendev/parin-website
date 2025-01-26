@@ -1,5 +1,0 @@
-#!/bin/env sh
-
-cd "$(dirname "$0")"
-cd "../"
-xdg-open index.html

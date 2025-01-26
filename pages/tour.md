@@ -21,7 +21,14 @@ dub run parin:setup
 ```
 
 If everything is set up correctly,
-there should be an app.d file inside the generated source folder that looks like this:
+there should be some new files inside the folder.
+Three of them are particularly important:
+
+* source: Contains the source code of the game.
+* assets: Contains the assets of the game.
+* web: Used for exporting the game to the web.
+
+Additionally, an app.d is inside the source folder that looks like this:
 
 ```d
 import parin;
@@ -91,6 +98,12 @@ In essence, a Parin game typically relies on three functions:
 * A ready function.
 * An update function.
 * A finish function.
+
+To run the game, use the following command:
+
+```cmd
+dub run
+```
 
 ## 2. Modules
 
