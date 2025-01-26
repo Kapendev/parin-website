@@ -116,8 +116,8 @@ inside the folder. Three of them are particularly important:</p>
 <li>assets: Contains the assets of the game.</li>
 <li>web: Used for exporting the game to the web.</li>
 </ul>
-<p>Additionally, an app.d is inside the source folder that looks like
-this:</p>
+<p>Additionally, an app.d file is inside the source folder that looks
+like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">import</span><span class="im"> parin</span><span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ready<span class="op">()</span> <span class="op">{</span></span>
@@ -333,37 +333,35 @@ class="sourceCode d"><code class="sourceCode d"><span id="cb16-1"><a href="#cb16
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> updateSound<span class="op">(</span>Sound sound<span class="op">);</span></span></code></pre></div>
 <h2 id="loading-and-saving-resources">6. Loading and Saving
 Resources</h2>
-<p>Parin provides a set of loading functions inside the
-<code>parin.engine</code> module. Functions that start with the word
-load/save will always try to read/write resources from/to the assets
-folder. These functions handle both forward slashes and backslashes in
-file paths, ensuring compatibility across operating systems.</p>
+<p>Parin provides a set of loading and saving functions inside the
+<code>parin.engine</code> module. These include:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>TextureId loadTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Texture loadRawTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>FontId loadFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>FontId loadFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>SoundId loadSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Sound loadRawSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>Fault loadRawTextIntoBuffer<span class="op">(</span>IStr path<span class="op">,</span> <span class="fu">ref</span> LStr buffer<span class="op">);</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>LStr loadRawText<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>IStr loadTempText<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>Fault saveText<span class="op">(</span>IStr path<span class="op">,</span> IStr text<span class="op">);</span></span></code></pre></div>
-<p>Additional loading functions can be found in other modules, such as
-<code>parin.map</code>.</p>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>FontId loadFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>FontId loadFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>SoundId loadSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Texture loadRawTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Sound loadRawSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>Fault loadRawTextIntoBuffer<span class="op">(</span>IStr path<span class="op">,</span> <span class="fu">ref</span> LStr buffer<span class="op">);</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>LStr loadRawText<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>IStr loadTempText<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>Fault saveText<span class="op">(</span>IStr path<span class="op">,</span> IStr text<span class="op">);</span></span></code></pre></div>
+<p>Functions that start with the word load or save will always try to
+read/write resources from/to the assets folder. They handle both forward
+slashes and backslashes in file paths, ensuring compatibility across
+operating systems. Additionally, resources are deviced into three
+groups. Managed, raw and temporary.</p>
 <h3 id="managed-resources">Managed Resources</h3>
 <p>Managed resources are cached by their path they were loaded with. To
 free these resources, use the <code>freeResources</code> function or the
 <code>free</code> method on the resource identifier. The resource
 identifier is automatically invalidated when the resource is freed.</p>
 <h3 id="raw-resources">Raw Resources</h3>
-<p>Raw resources are managed directly by the user and are not cached or
-grouped. They must be freed manually when no longer needed.</p>
+<p>Raw resources are managed directly by the user and are not cached.
+They must be freed manually when no longer needed.</p>
 <h3 id="temporary-resources">Temporary Resources</h3>
 <p>Temporary resources are only valid until the function that provided
 them is called again. They don’t need to be freed manually.</p>

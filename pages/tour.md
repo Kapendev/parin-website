@@ -28,7 +28,7 @@ Three of them are particularly important:
 * assets: Contains the assets of the game.
 * web: Used for exporting the game to the web.
 
-Additionally, an app.d is inside the source folder that looks like this:
+Additionally, an app.d file is inside the source folder that looks like this:
 
 ```d
 import parin;
@@ -297,30 +297,29 @@ void updateSound(Sound sound);
 
 ## 6. Loading and Saving Resources
 
-Parin provides a set of loading functions inside the `parin.engine` module.
-Functions that start with the word load/save will always try to read/write resources from/to the assets folder.
-These functions handle both forward slashes and backslashes in file paths, ensuring compatibility across operating systems.
+Parin provides a set of loading and saving functions inside the `parin.engine` module.
+These include:
 
 ```d
 TextureId loadTexture(IStr path);
-Result!Texture loadRawTexture(IStr path);
-
 FontId loadFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 FontId loadFontFromTexture(IStr path, int tileWidth, int tileHeight);
+SoundId loadSound(IStr path, float volume, float pitch);
+
+Result!Texture loadRawTexture(IStr path);
 Result!Font loadRawFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 Result!Font loadRawFontFromTexture(IStr path, int tileWidth, int tileHeight);
-
-SoundId loadSound(IStr path, float volume, float pitch);
 Result!Sound loadRawSound(IStr path, float volume, float pitch);
 
 Fault loadRawTextIntoBuffer(IStr path, ref LStr buffer);
 Result!LStr loadRawText(IStr path);
 Result!IStr loadTempText(IStr path);
-
 Fault saveText(IStr path, IStr text);
 ```
 
-Additional loading functions can be found in other modules, such as `parin.map`.
+Functions that start with the word load or save will always try to read/write resources from/to the assets folder.
+They handle both forward slashes and backslashes in file paths, ensuring compatibility across operating systems.
+Additionally, resources are deviced into three groups. Managed, raw and temporary.
 
 ### Managed Resources
 
@@ -330,7 +329,7 @@ The resource identifier is automatically invalidated when the resource is freed.
 
 ### Raw Resources
 
-Raw resources are managed directly by the user and are not cached or grouped.
+Raw resources are managed directly by the user and are not cached.
 They must be freed manually when no longer needed.
 
 ### Temporary Resources
