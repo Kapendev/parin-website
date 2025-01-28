@@ -283,6 +283,17 @@ Below are examples showing how to use these options to change how text looks.
     }
     ```
 
+* Changing the Visibility Ratio and Origin
+
+    ```d
+    bool update(float dt) {
+        auto options = DrawOptions(Hook.center);
+        options.visibilityRatio = fmod(elapsedTime, 2.0);
+        drawDebugText("Hello.\nThis is some text.", resolution * Vec2(0.5), options);
+        return false;
+    }
+    ```
+
 ## 5. Sound
 
 Parin provides a set of sound functions inside the `parin.engine` module.
