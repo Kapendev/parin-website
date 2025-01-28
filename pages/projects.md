@@ -6,7 +6,7 @@
 
 # Projects Made With Parin
 
-This is a place for people to showcase their projects built with Parin.
+This is a place for people to showcase their projects made with Parin.
 If you would like your project listed here, feel free to create an [issue](https://github.com/Kapendev/parin/issues)!
 
 ### 2025
