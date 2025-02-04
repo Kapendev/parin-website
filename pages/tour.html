@@ -215,7 +215,7 @@ a convenience import that includes all modules.</p>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>Vec2 deltaMouse<span class="op">();</span></span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> deltaWheel<span class="op">();</span></span></code></pre></div>
 <p>Below are examples showing how to use these input functions to move
-text.</p>
+text:</p>
 <ul>
 <li><p>Using the Mouse</p>
 <div class="sourceCode" id="cb9"><pre
@@ -305,7 +305,7 @@ origin is zero.</li>
 text.</li>
 </ul>
 <p>Below are examples showing how to use these options to change how
-text looks.</p>
+text looks:</p>
 <ul>
 <li><p>Changing the Alignment</p>
 <div class="sourceCode" id="cb15"><pre
@@ -339,34 +339,46 @@ class="sourceCode d"><code class="sourceCode d"><span id="cb17-1"><a href="#cb17
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> pauseSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> resumeSound<span class="op">(</span>Sound sound<span class="op">);</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> updateSound<span class="op">(</span>Sound sound<span class="op">);</span></span></code></pre></div>
+<p>Below are examples showing how to use these sound functions:</p>
+<ul>
+<li><p>Playing a Sound</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode d"><code class="sourceCode d"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>SoundId sound<span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> update<span class="op">(</span><span class="dt">float</span> dt<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    updateSound<span class="op">(</span>sound<span class="op">);</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> <span class="op">(</span>Keyboard.space.isPressed<span class="op">)</span> playSound<span class="op">(</span>sound<span class="op">);</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+</ul>
 <h2 id="loading-and-saving-resources">6. Loading and Saving
 Resources</h2>
 <p>Parin provides a set of loading and saving functions inside the
 <code>parin.engine</code> module. These include:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>TextureId loadTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>FontId loadFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>FontId loadFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>SoundId loadSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Texture loadRawTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Sound loadRawSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>Fault loadRawTextIntoBuffer<span class="op">(</span>IStr path<span class="op">,</span> <span class="fu">ref</span> LStr buffer<span class="op">);</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>LStr loadRawText<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>IStr loadTempText<span class="op">(</span>IStr path<span class="op">);</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>Fault saveText<span class="op">(</span>IStr path<span class="op">,</span> IStr text<span class="op">);</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode d"><code class="sourceCode d"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>TextureId loadTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>FontId loadFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>FontId loadFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>SoundId loadSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Texture loadRawTexture<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFont<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> size<span class="op">,</span> <span class="dt">int</span> runeSpacing<span class="op">,</span> <span class="dt">int</span> lineSpacing<span class="op">,</span> IStr32 runes <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">);</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Font loadRawFontFromTexture<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">int</span> tileWidth<span class="op">,</span> <span class="dt">int</span> tileHeight<span class="op">);</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>Sound loadRawSound<span class="op">(</span>IStr path<span class="op">,</span> <span class="dt">float</span> volume<span class="op">,</span> <span class="dt">float</span> pitch<span class="op">);</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>Fault loadRawTextIntoBuffer<span class="op">(</span>IStr path<span class="op">,</span> <span class="fu">ref</span> LStr buffer<span class="op">);</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>LStr loadRawText<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>Result<span class="op">!</span>IStr loadTempText<span class="op">(</span>IStr path<span class="op">);</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>Fault saveText<span class="op">(</span>IStr path<span class="op">,</span> IStr text<span class="op">);</span></span></code></pre></div>
 <p>Functions that start with the word load or save will always try to
 read/write resources from/to the assets folder. They handle both forward
 slashes and backslashes in file paths, ensuring compatibility across
 operating systems. Additionally, resources are separated into three
 groups. Managed, raw and temporary.</p>
 <h3 id="managed-resources">Managed Resources</h3>
-<p>Managed resources are cached by their path they were loaded with. To
-free these resources, use the <code>freeResources</code> function or the
-<code>free</code> method on the resource identifier. The resource
-identifier is automatically invalidated when the resource is freed.</p>
+<p>Managed resources are cached by the path they were loaded from and
+can be safely shared throughout the code. To free these resources, use
+the <code>freeResources</code> function or the <code>free</code> method
+on the identifier. The identifier is automatically invalidated when the
+resource is freed.</p>
 <h3 id="raw-resources">Raw Resources</h3>
 <p>Raw resources are managed directly by the user and are not cached.
 They must be freed manually when no longer needed.</p>

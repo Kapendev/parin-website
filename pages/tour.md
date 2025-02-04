@@ -153,7 +153,7 @@ Vec2 deltaMouse();
 float deltaWheel();
 ```
 
-Below are examples showing how to use these input functions to move text.
+Below are examples showing how to use these input functions to move text:
 
 * Using the Mouse
 
@@ -260,7 +260,7 @@ Here is a breakdown of what every option is:
 * visibilityRatio: The visibility ratio of the object, between 0.0 and 1.0.
 * isRightToLeft: A flow indicator for things such as Arabic or Hebrew text.
 
-Below are examples showing how to use these options to change how text looks.
+Below are examples showing how to use these options to change how text looks:
 
 * Changing the Alignment
 
@@ -306,6 +306,19 @@ void resumeSound(Sound sound);
 void updateSound(Sound sound);
 ```
 
+Below are examples showing how to use these sound functions:
+
+* Playing a Sound
+
+    ```d
+    SoundId sound;
+    
+    bool update(float dt) {
+        updateSound(sound);
+        if (Keyboard.space.isPressed) playSound(sound);
+    }
+    ```
+
 ## 6. Loading and Saving Resources
 
 Parin provides a set of loading and saving functions inside the `parin.engine` module.
@@ -334,9 +347,9 @@ Additionally, resources are separated into three groups. Managed, raw and tempor
 
 ### Managed Resources
 
-Managed resources are cached by their path they were loaded with.
-To free these resources, use the `freeResources` function or the `free` method on the resource identifier.
-The resource identifier is automatically invalidated when the resource is freed.
+Managed resources are cached by the path they were loaded from and can be safely shared throughout the code.
+To free these resources, use the `freeResources` function or the `free` method on the identifier.
+The identifier is automatically invalidated when the resource is freed.
 
 ### Raw Resources
 
