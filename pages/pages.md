@@ -8,6 +8,7 @@
 
 * [Home](../index.html)
 * [Tour](./tour.html)
+* [Cheatsheet](./cheatsheet.html)
 * [Projects](./projects.html)
 
 <br>

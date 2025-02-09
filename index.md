@@ -6,8 +6,7 @@
 
 # Parin
 
-A delightfully simple and lightweight 2D game engine for the D programming language,
-offering a solid foundation for creating 2D games.
+A delightfully simple and lightweight 2D game engine for the D programming language.
 
 ```d
 import parin;
@@ -33,6 +32,7 @@ Parin is packed with powerful features to get you started quickly:
 * Intuitive immediate mode UI
 * Flexible dialogue system with a stack-oriented scripting language
 * Atlas-based animation library
+* Pixel-perfect physics engine
 * ...and more!
 
 ## Cross-Platform
@@ -88,7 +88,7 @@ sudo pacman -S alsa-lib mesa libx11 libxrandr libxi libxcursor libxinerama
 
 ## Documentation
 
-Start with the [examples](https://github.com/Kapendev/parin/tree/main/examples) folder for a quick overview.
+Start with the [examples](https://github.com/Kapendev/parin/tree/main/examples) folder or the [cheatsheet](https://kapendev.github.io/parin-website/pages/cheatsheet.html) for a quick overview.
 For more details, check the [tour](./pages/tour.html) page.
 
 <br>
