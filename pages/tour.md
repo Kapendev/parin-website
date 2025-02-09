@@ -347,7 +347,7 @@ Additionally, resources are separated into three groups. Managed, raw and tempor
 
 ### Managed Resources
 
-Managed resources are cached by the path they were loaded from and can be safely shared throughout the code.
+Managed resources can be safely shared throughout the code.
 To free these resources, use the `freeResources` function or the `free` method on the identifier.
 The identifier is automatically invalidated when the resource is freed.
 

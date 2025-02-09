@@ -374,11 +374,10 @@ slashes and backslashes in file paths, ensuring compatibility across
 operating systems. Additionally, resources are separated into three
 groups. Managed, raw and temporary.</p>
 <h3 id="managed-resources">Managed Resources</h3>
-<p>Managed resources are cached by the path they were loaded from and
-can be safely shared throughout the code. To free these resources, use
-the <code>freeResources</code> function or the <code>free</code> method
-on the identifier. The identifier is automatically invalidated when the
-resource is freed.</p>
+<p>Managed resources can be safely shared throughout the code. To free
+these resources, use the <code>freeResources</code> function or the
+<code>free</code> method on the identifier. The identifier is
+automatically invalidated when the resource is freed.</p>
 <h3 id="raw-resources">Raw Resources</h3>
 <p>Raw resources are managed directly by the user and are not cached.
 They must be freed manually when no longer needed.</p>
