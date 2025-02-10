@@ -105,16 +105,22 @@ To run the game, use the following command:
 dub run
 ```
 
+And that's it for the basics.
+As a fun exercise, try changing the message to "DVD" and make it bounce inside the window.
+
+**Tip:** The font used here has characters that have a size of 6x12.
+
 ## 2. Modules
 
 Parin consists of the following modules:
 
-* parin.engine
-* parin.map
-* parin.sprite
-* parin.story
-* parin.timer
-* parin.ui
+* parin.engine: Core engine functionality
+* parin.map: Tile map utilities
+* parin.platformer: Physics engine
+* parin.sprite: Sprite utilities
+* parin.story: Dialogue system
+* parin.timer: Time utilities
+* parin.ui: Immediate mode UI
 
 The `parin.engine` module is the only mandatory module for creating a game.
 All other modules are optional and can be included as needed.
@@ -312,10 +318,27 @@ Below are examples showing how to use these sound functions.
 
     ```d
     SoundId sound;
-    
+
     bool update(float dt) {
         updateSound(sound);
         if (Keyboard.space.isPressed) playSound(sound);
+        return false;
+    }
+    ```
+
+* Pausing and Resuming a Sound
+
+    ```d
+    SoundId sound;
+
+    bool update(float dt) {
+        updateSound(sound);
+        if (Keyboard.space.isPressed) playSound(sound);
+        if (Keyboard.esc.isPressed) {
+            if (sound.isPlaying) pauseSound(sound);
+            else resumeSound(sound);
+        }
+        return false;
     }
     ```
 

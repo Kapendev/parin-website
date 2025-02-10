@@ -55,6 +55,8 @@ IStr toAssetsPath(IStr path);
 bool canUseAssetsPath();
 void setCanUseAssetsPath(bool value);
 IStr[] droppedFilePaths();
+void openUrl(IStr url = "https://github.com/Kapendev/parin");
+void freeResources();
 
 // [Input]
 bool isDown(char key);
