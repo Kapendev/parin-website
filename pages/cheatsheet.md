@@ -132,6 +132,194 @@ int randi();
 float randf();
 void randomize(int seed);
 void randomize();
+
+// [Enums]
+enum Flip : ubyte {
+    none,
+    x,
+    y,
+    xy,
+}
+
+enum Alignment : ubyte {
+    left,
+    center,
+    right,
+}
+
+enum Filter : ubyte {
+    nearest,
+    linear,
+}
+
+enum Wrap : ubyte {
+    clamp,
+    repeat,
+}
+
+enum Blend : ubyte {
+    alpha,
+    additive,
+    multiplied,
+    add,
+    sub,
+}
+
+enum Keyboard : ushort {
+    none,
+    a,
+    b,
+    c,
+    d,
+    e,
+    f,
+    g,
+    h,
+    i,
+    j,
+    k,
+    l,
+    m,
+    n,
+    o,
+    p,
+    q,
+    r,
+    s,
+    t,
+    u,
+    v,
+    w,
+    x,
+    y,
+    z,
+    n0,
+    n1,
+    n2,
+    n3,
+    n4,
+    n5,
+    n6,
+    n7,
+    n8,
+    n9,
+    nn0,
+    nn1,
+    nn2,
+    nn3,
+    nn4,
+    nn5,
+    nn6,
+    nn7,
+    nn8,
+    nn9,
+    f1,
+    f2,
+    f3,
+    f4,
+    f5,
+    f6,
+    f7,
+    f8,
+    f9,
+    f10,
+    f11,
+    f12,
+    left,
+    right,
+    up,
+    down,
+    esc,
+    enter,
+    tab,
+    space,
+    backspace,
+    shift,
+    ctrl,
+    alt,
+    win,
+    insert,
+    del,
+    home,
+    end,
+    pageUp,
+    pageDown,
+}
+
+enum Mouse : ushort {
+    none,
+    left,
+    right,
+    middle,
+}
+
+enum Gamepad : ushort {
+    none,
+    left,
+    right,
+    up,
+    down,
+    y,
+    x,
+    a,
+    b,
+    lt,
+    lb,
+    lsb,
+    rt,
+    rb,
+    rsb,
+    back,
+    start,
+    middle,
+}
+
+// [Structs]
+struct DrawOptions {
+    Vec2 origin = Vec2(0.0f);
+    Vec2 scale = Vec2(1.0f);
+    float rotation = 0.0f;
+    Color color = white;
+    Hook hook = Hook.topLeft;
+    Flip flip = Flip.none;
+    Alignment alignment = Alignment.left;
+    int alignmentWidth = 0;
+    float visibilityRatio = 1.0f;
+    bool isRightToLeft = false;
+}
+
+struct TextureId {
+    int width();
+    int height();
+    Vec2 size();
+    void setFilter(Filter value);
+    void setWrap(Wrap value);
+    bool isValid();
+    void free();
+}
+
+struct FontId {
+    int runeSpacing();
+    int lineSpacing();
+    int size();
+    void setFilter(Filter value);
+    void setWrap(Wrap value);
+    bool isValid();
+    void free();
+}
+
+struct SoundId {
+    bool isPaused();
+    bool isPlaying();
+    float time();
+    float duration();
+    float progress();
+    void setVolume(float value);
+    void setPitch(float value);
+    void setPan(float value);
+    bool isValid();
+    void free();
+}
 ```
 
 <br>

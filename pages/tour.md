@@ -376,7 +376,7 @@ The identifier is automatically invalidated when the resource is freed.
 
 ### Raw Resources
 
-Raw resources are managed directly by the user and are not cached.
+Raw resources are managed directly by the user.
 They must be freed manually when no longer needed.
 
 ### Temporary Resources
