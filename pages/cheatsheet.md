@@ -13,6 +13,11 @@ If you notice anything missing or would like to contribute, feel free to create 
 
 ```d
 // [App]
+int fps();
+float deltaTime();
+double elapsedTime();
+long elapsedTickCount();
+
 int screenWidth();
 int screenHeight();
 Vec2 screenSize();
@@ -24,11 +29,9 @@ int resolutionHeight();
 Vec2 resolution();
 EngineViewportInfo engineViewportInfo();
 
-int fps();
-double elapsedTime();
-long elapsedTickCount();
-float deltaTime();
-
+void lockResolution(int width, int height);
+void unlockResolution();
+void toggleResolution(int width, int height);
 bool isWindowResized();
 void setBackgroundColor(Color value);
 void setBorderColor(Color value);
@@ -38,16 +41,14 @@ Fault setWindowIconFromFiles(IStr path);
 
 bool isPixelSnapped();
 void setIsPixelSnapped(bool value);
-void toggleIsPixelSnapped();
 bool isPixelPerfect();
 void setIsPixelPerfect(bool value);
-void toggleIsPixelPerfect();
-bool isCursorVisible();
-void setIsCursorVisible(bool value);
-void toggleIsCursorVisible();
 bool isFullscreen();
 void setIsFullscreen(bool value);
 void toggleIsFullscreen();
+bool isCursorVisible();
+void setIsCursorVisible(bool value);
+void toggleIsCursorVisible();
 
 IStr[] envArgs();
 IStr assetsPath();
