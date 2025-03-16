@@ -51,11 +51,11 @@ void setIsCursorVisible(bool value);
 void toggleIsCursorVisible();
 
 IStr[] envArgs();
+IStr[] droppedFilePaths();
 IStr assetsPath();
 IStr toAssetsPath(IStr path);
-bool canUseAssetsPath();
-void setCanUseAssetsPath(bool value);
-IStr[] droppedFilePaths();
+bool isUsingAssetsPath();
+void setIsUsingAssetsPath(bool value);
 void openUrl(IStr url = "https://github.com/Kapendev/parin");
 void freeResources();
 
