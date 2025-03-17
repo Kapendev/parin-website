@@ -153,7 +153,6 @@ dchar dequeuePressedRune();
 Vec2 wasd();
 Vec2 wasdPressed();
 Vec2 wasdReleased();
-
 Vec2 mouse();
 Vec2 deltaMouse();
 float deltaWheel();
@@ -221,22 +220,20 @@ void drawHollowCirc(Circ area, float thickness, Color color = white);
 void drawVec2(Vec2 point, float size, Color color = white);
 void drawLine(Line area, float size, Color color = white);
 
-void drawTexture(Texture texture, Vec2 position, DrawOptions options = DrawOptions());
-void drawTextureArea(Texture texture, Rect area, Vec2 position, DrawOptions options = DrawOptions());
-void drawTexturePatch(Texture texture, Rect area, Rect target, bool isTiled, DrawOptions options = DrawOptions());
+void drawTexture(TextureId texture, Vec2 position, DrawOptions options = DrawOptions());
+void drawTextureArea(TextureId texture, Rect area, Vec2 position, DrawOptions options = DrawOptions());
+void drawTexturePatch(TextureId texture, Rect area, Rect target, bool isTiled, DrawOptions options = DrawOptions());
+void drawRune(FontId font, dchar rune, Vec2 position, DrawOptions options = DrawOptions());
+void drawText(FontId font, IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extraOptions = TextOptions());
+void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extraOptions = TextOptions());
 
 void drawViewport(Viewport viewport, Vec2 position, DrawOptions options = DrawOptions());
 void drawViewportArea(Viewport viewport, Rect area, Vec2 position, DrawOptions options = DrawOptions());
-
-void drawRune(Font font, dchar rune, Vec2 position, DrawOptions options = DrawOptions());
-void drawText(Font font, IStr text, Vec2 position, DrawOptions options = DrawOptions());
-void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions());
 ```
 
 ### Draw Options
 
 Draw options are used for configuring drawing parameters.
-The data structure looks like this:
 
 ```d
 struct DrawOptions {
@@ -246,39 +243,41 @@ struct DrawOptions {
     Color color = white;
     Hook hook = Hook.topLeft;
     Flip flip = Flip.none;
-    Alignment alignment = Alignment.left;
-    int alignmentWidth = 0;
-    float visibilityRatio = 1.0f;
-    bool isRightToLeft = false;
 }
 ```
 
 Here is a breakdown of what every option is:
 
-* origin: The origin point of the object.
-* scale: The scale of the object.
-* rotation: The rotation of the object, in degrees.
-* color: The color of the object, in RGBA.
-* hook: A value representing the origin point of the object when origin is zero.
+* origin: The origin point of the drawn object. This value can be used to force a specific origin.
+* scale: The scale of the drawn object.
+* rotation: The rotation of the drawn object, in degrees.
+* color: The color of the drawn object, in RGBA.
+* hook: A value representing the origin point of the drawn object when origin is zero.
 * flip: A value representing flipping orientations.
+
+There is also an additional options type for text drawing.
+
+```d
+struct TextOptions {
+    float visibilityRatio = 1.0f;
+    int alignmentWidth = 0;
+    ushort visibilityCount = 0;
+    Alignment alignment = Alignment.left;
+    bool isRightToLeft = false;
+}
+```
+
+Here is a again a breakdown of what every option is:
+
+* visibilityRatio: Controls the visibility ratio of the text when visibilityCount is zero, where 0.0 means fully hidden and 1.0 means fully visible.
+* alignmentWidth: The width of the aligned text. It is used as a hint and is not enforced.
+* visibilityCount: Controls the visibility count of the text. This value can be used to force a specific character count.
 * alignment: A value represeting alignment orientations.
-* alignmentWidth: The width of the aligned object.
-* visibilityRatio: The visibility ratio of the object, between 0.0 and 1.0.
-* isRightToLeft: A flow indicator for things such as Arabic or Hebrew text.
+* isRightToLeft: Indicates whether the content of the text flows in a right-to-left direction.
 
 Below are examples showing how to use these options to change how text looks.
 
-* Changing the Alignment
-
-    ```d
-    bool update(float dt) {
-        auto options = DrawOptions(Alignment.right);
-        drawDebugText("Hello.\nThis is some text.", Vec2(8), options);
-        return false;
-    }
-    ```
-
-* Changing the Size and Origin
+* Changing the Origin and Scale
 
     ```d
     bool update(float dt) {
@@ -289,13 +288,13 @@ Below are examples showing how to use these options to change how text looks.
     }
     ```
 
-* Changing the Visibility Ratio and Origin
+* Changing the Origin and Visibility Ratio
 
     ```d
     bool update(float dt) {
         auto options = DrawOptions(Hook.center);
-        options.visibilityRatio = fmod(elapsedTime, 2.0);
-        drawDebugText("Hello.\nThis is some text.", resolution * Vec2(0.5), options);
+        auto extra = TextOptions(fmod(elapsedTime, 2.0));
+        drawDebugText("Hello.\nThis is some text.", resolution * Vec2(0.5), options, extra);
         return false;
     }
     ```
@@ -351,12 +350,12 @@ These include:
 TextureId loadTexture(IStr path);
 FontId loadFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 FontId loadFontFromTexture(IStr path, int tileWidth, int tileHeight);
-SoundId loadSound(IStr path, float volume, float pitch);
+SoundId loadSound(IStr path, float volume, float pitch, bool isLooping);
 
 Result!Texture loadRawTexture(IStr path);
 Result!Font loadRawFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 Result!Font loadRawFontFromTexture(IStr path, int tileWidth, int tileHeight);
-Result!Sound loadRawSound(IStr path, float volume, float pitch);
+Result!Sound loadRawSound(IStr path, float volume, float pitch, bool isLooping);
 
 Fault loadRawTextIntoBuffer(IStr path, ref LStr buffer);
 Result!LStr loadRawText(IStr path);
@@ -366,23 +365,19 @@ Fault saveText(IStr path, IStr text);
 
 Functions that start with the word load or save will always try to read/write resources from/to the assets folder.
 They handle both forward slashes and backslashes in file paths, ensuring compatibility across operating systems.
-Additionally, resources are separated into three groups. Managed, raw and temporary.
-
-### Managed Resources
-
-Managed resources can be safely shared throughout the code.
-To free these resources, use the `freeResources` function or the `free` method on the identifier.
-The identifier is automatically invalidated when the resource is freed.
+Additionally, resources are separated into three groups. Raw, managed and temporary.
 
 ### Raw Resources
 
 Raw resources are managed directly by the user.
-They must be freed manually when no longer needed.
+
+### Managed Resources
+
+Managed resources are managed by the engine, meaning that they can be safely shared throughout the code and are automatically invalidated when freed.
 
 ### Temporary Resources
 
 Temporary resources are only valid until the function that provided them is called again.
-They don’t need to be freed manually.
 
 ## 7. Sprites and Tile Maps
 

@@ -57,7 +57,7 @@ IStr toAssetsPath(IStr path);
 bool isUsingAssetsPath();
 void setIsUsingAssetsPath(bool value);
 void openUrl(IStr url = "https://github.com/Kapendev/parin");
-void freeResources();
+void freeEngineResources();
 
 // [Input]
 bool isDown(char key);
@@ -81,7 +81,6 @@ dchar dequeuePressedRune();
 Vec2 wasd();
 Vec2 wasdPressed();
 Vec2 wasdReleased();
-
 Vec2 mouse();
 Vec2 deltaMouse();
 float deltaWheel();
@@ -94,34 +93,33 @@ void drawHollowCirc(Circ area, float thickness, Color color = white);
 void drawVec2(Vec2 point, float size, Color color = white);
 void drawLine(Line area, float size, Color color = white);
 
-void drawTexture(Texture texture, Vec2 position, DrawOptions options = DrawOptions());
-void drawTextureArea(Texture texture, Rect area, Vec2 position, DrawOptions options = DrawOptions());
-void drawTexturePatch(Texture texture, Rect area, Rect target, bool isTiled, DrawOptions options = DrawOptions());
+void drawTexture(TextureId texture, Vec2 position, DrawOptions options = DrawOptions());
+void drawTextureArea(TextureId texture, Rect area, Vec2 position, DrawOptions options = DrawOptions());
+void drawTexturePatch(TextureId texture, Rect area, Rect target, bool isTiled, DrawOptions options = DrawOptions());
+void drawRune(FontId font, dchar rune, Vec2 position, DrawOptions options = DrawOptions());
+void drawText(FontId font, IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extraOptions = TextOptions());
+void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extraOptions = TextOptions());
 
 void drawViewport(Viewport viewport, Vec2 position, DrawOptions options = DrawOptions());
 void drawViewportArea(Viewport viewport, Rect area, Vec2 position, DrawOptions options = DrawOptions());
 
-void drawRune(Font font, dchar rune, Vec2 position, DrawOptions options = DrawOptions());
-void drawText(Font font, IStr text, Vec2 position, DrawOptions options = DrawOptions());
-void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions());
-
 // [Sound]
-void playSound(Sound sound);
-void stopSound(Sound sound);
-void pauseSound(Sound sound);
-void resumeSound(Sound sound);
-void updateSound(Sound sound);
+void playSound(SoundId sound);
+void stopSound(SoundId sound);
+void pauseSound(SoundId sound);
+void resumeSound(SoundId sound);
+void updateSound(SoundId sound);
 
 // [Loading/Saving]
 TextureId loadTexture(IStr path);
 FontId loadFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 FontId loadFontFromTexture(IStr path, int tileWidth, int tileHeight);
-SoundId loadSound(IStr path, float volume, float pitch);
+SoundId loadSound(IStr path, float volume, float pitch, bool isLooping);
 
 Result!Texture loadRawTexture(IStr path);
 Result!Font loadRawFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 Result!Font loadRawFontFromTexture(IStr path, int tileWidth, int tileHeight);
-Result!Sound loadRawSound(IStr path, float volume, float pitch);
+Result!Sound loadRawSound(IStr path, float volume, float pitch, bool isLooping);
 
 Fault loadRawTextIntoBuffer(IStr path, ref LStr buffer);
 Result!LStr loadRawText(IStr path);
@@ -283,9 +281,13 @@ struct DrawOptions {
     Color color = white;
     Hook hook = Hook.topLeft;
     Flip flip = Flip.none;
-    Alignment alignment = Alignment.left;
-    int alignmentWidth = 0;
+}
+
+struct TextOptions {
     float visibilityRatio = 1.0f;
+    int alignmentWidth = 0;
+    ushort visibilityCount = 0;
+    Alignment alignment = Alignment.left;
     bool isRightToLeft = false;
 }
 
@@ -311,6 +313,7 @@ struct FontId {
 
 struct SoundId {
     bool isPaused();
+    bool isLooping();
     bool isPlaying();
     float time();
     float duration();
