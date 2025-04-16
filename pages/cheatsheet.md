@@ -43,6 +43,8 @@ bool isPixelSnapped();
 void setIsPixelSnapped(bool value);
 bool isPixelPerfect();
 void setIsPixelPerfect(bool value);
+bool isEmptyTextureVisible();
+void setIsEmptyTextureVisible(bool value);
 bool isFullscreen();
 void setIsFullscreen(bool value);
 void toggleIsFullscreen();
@@ -129,7 +131,7 @@ Fault saveText(IStr path, IStr text);
 // [Random]
 int randi();
 float randf();
-void randomize(int seed);
+void randomizeSeed(int seed);
 void randomize();
 
 // [Enums]
