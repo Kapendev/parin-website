@@ -226,6 +226,7 @@ void drawTexturePatch(TextureId texture, Rect area, Rect target, bool isTiled, D
 void drawRune(FontId font, dchar rune, Vec2 position, DrawOptions options = DrawOptions());
 void drawText(FontId font, IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extraOptions = TextOptions());
 void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extraOptions = TextOptions());
+void drawDebugEngineInfo(Vec2 position, DrawOptions options = DrawOptions());
 
 void drawViewport(Viewport viewport, Vec2 position, DrawOptions options = DrawOptions());
 void drawViewportArea(Viewport viewport, Rect area, Vec2 position, DrawOptions options = DrawOptions());

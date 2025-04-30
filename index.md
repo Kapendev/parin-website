@@ -11,15 +11,18 @@ A delightfully simple and lightweight 2D game engine for the D programming langu
 ```d
 import parin;
 
+// Called once when the game starts.
 void ready() {
     lockResolution(320, 180);
 }
 
+// Called every frame while the game is running.
 bool update(float dt) {
     drawDebugText("Hello world!", Vec2(8));
     return false;
 }
 
+// Called once when the game ends.
 void finish() { }
 
 mixin runGame!(ready, update, finish);
