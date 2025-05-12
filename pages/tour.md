@@ -10,7 +10,7 @@ Welcome to the Parin game engine tour.
 This page will go over each feature of the engine and provide examples of how to use them.
 If you notice anything missing or would like to contribute, feel free to create an [issue](https://github.com/Kapendev/parin/issues)!
 
-## 1. Getting Started
+## Getting Started
 
 This guide shows how to install Parin and its dependencies using [DUB](https://dub.pm/).
 To begin, make a new folder and run inside the following commands to create a new project:
@@ -110,7 +110,7 @@ As a fun exercise, try changing the message to "DVD" and make it bounce inside t
 
 **Tip:** The font used here has characters that have a size of 6x12.
 
-## 2. Modules
+## Modules
 
 Parin consists of the following modules:
 
@@ -126,7 +126,7 @@ The `parin.engine` module is the only mandatory module for creating a game.
 All other modules are optional and can be included as needed.
 The `import parin;` statement in the example above is a convenience import that includes all modules.
 
-## 3. Input
+## Input
 
 Parin provides a set of input functions inside the `parin.engine` module.
 These include:
@@ -207,18 +207,18 @@ Below are examples showing how to use these input functions to move text.
     }
     ```
 
-## 4. Drawing
+## Drawing
 
 Parin provides a set of drawing functions inside the `parin.engine` module.
 These include:
 
 ```d
-void drawRect(Rect area, Color color = white);
-void drawHollowRect(Rect area, float thickness, Color color = white);
-void drawCirc(Circ area, Color color = white);
-void drawHollowCirc(Circ area, float thickness, Color color = white);
-void drawVec2(Vec2 point, float size, Color color = white);
-void drawLine(Line area, float size, Color color = white);
+void drawRect(Rect area, Rgba color = white);
+void drawHollowRect(Rect area, float thickness, Rgba color = white);
+void drawCirc(Circ area, Rgba color = white);
+void drawHollowCirc(Circ area, float thickness, Rgba color = white);
+void drawVec2(Vec2 point, float size, Rgba color = white);
+void drawLine(Line area, float size, Rgba color = white);
 
 void drawTexture(TextureId texture, Vec2 position, DrawOptions options = DrawOptions());
 void drawTextureArea(TextureId texture, Rect area, Vec2 position, DrawOptions options = DrawOptions());
@@ -241,7 +241,7 @@ struct DrawOptions {
     Vec2 origin = Vec2(0.0f);
     Vec2 scale = Vec2(1.0f);
     float rotation = 0.0f;
-    Color color = white;
+    Rgba color = white;
     Hook hook = Hook.topLeft;
     Flip flip = Flip.none;
 }
@@ -300,7 +300,7 @@ Below are examples showing how to use these options to change how text looks.
     }
     ```
 
-## 5. Sound
+## Sound
 
 Parin provides a set of sound functions inside the `parin.engine` module.
 
@@ -342,7 +342,7 @@ Below are examples showing how to use these sound functions.
     }
     ```
 
-## 6. Loading and Saving Resources
+## Loading and Saving Resources
 
 Parin provides a set of loading and saving functions inside the `parin.engine` module.
 These include:
@@ -351,12 +351,12 @@ These include:
 TextureId loadTexture(IStr path);
 FontId loadFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 FontId loadFontFromTexture(IStr path, int tileWidth, int tileHeight);
-SoundId loadSound(IStr path, float volume, float pitch, bool isLooping);
+SoundId loadSound(IStr path, float volume, float pitch, bool canRepeat);
 
 Result!Texture loadRawTexture(IStr path);
 Result!Font loadRawFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 Result!Font loadRawFontFromTexture(IStr path, int tileWidth, int tileHeight);
-Result!Sound loadRawSound(IStr path, float volume, float pitch, bool isLooping);
+Result!Sound loadRawSound(IStr path, float volume, float pitch, bool canRepeat);
 
 Fault loadRawTextIntoBuffer(IStr path, ref LStr buffer);
 Result!LStr loadRawText(IStr path);
@@ -380,7 +380,7 @@ Managed resources are managed by the engine, meaning that they can be safely sha
 
 Temporary resources are only valid until the function that provided them is called again.
 
-## 7. Sprites and Tile Maps
+## Sprites and Tile Maps
 
 Sprites and tile maps can be implemented in various ways.
 To avoid enforcing a specific approach, Parin provides optional modules for these features, allowing users to include or omit them as needed.

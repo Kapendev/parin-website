@@ -33,8 +33,8 @@ void lockResolution(int width, int height);
 void unlockResolution();
 void toggleResolution(int width, int height);
 bool isWindowResized();
-void setBackgroundColor(Color value);
-void setBorderColor(Color value);
+void setBackgroundColor(Rgba value);
+void setBorderColor(Rgba value);
 void setWindowMinSize(int width, int height);
 void setWindowMaxSize(int width, int height);
 Fault setWindowIconFromFiles(IStr path);
@@ -88,12 +88,12 @@ Vec2 deltaMouse();
 float deltaWheel();
 
 // [Drawing]
-void drawRect(Rect area, Color color = white);
-void drawHollowRect(Rect area, float thickness, Color color = white);
-void drawCirc(Circ area, Color color = white);
-void drawHollowCirc(Circ area, float thickness, Color color = white);
-void drawVec2(Vec2 point, float size, Color color = white);
-void drawLine(Line area, float size, Color color = white);
+void drawRect(Rect area, Rgba color = white);
+void drawHollowRect(Rect area, float thickness, Rgba color = white);
+void drawCirc(Circ area, Rgba color = white);
+void drawHollowCirc(Circ area, float thickness, Rgba color = white);
+void drawVec2(Vec2 point, float size, Rgba color = white);
+void drawLine(Line area, float size, Rgba color = white);
 
 void drawTexture(TextureId texture, Vec2 position, DrawOptions options = DrawOptions());
 void drawTextureArea(TextureId texture, Rect area, Vec2 position, DrawOptions options = DrawOptions());
@@ -117,12 +117,12 @@ void updateSound(SoundId sound);
 TextureId loadTexture(IStr path);
 FontId loadFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 FontId loadFontFromTexture(IStr path, int tileWidth, int tileHeight);
-SoundId loadSound(IStr path, float volume, float pitch, bool isLooping);
+SoundId loadSound(IStr path, float volume, float pitch, bool canRepeat);
 
 Result!Texture loadRawTexture(IStr path);
 Result!Font loadRawFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 Result!Font loadRawFontFromTexture(IStr path, int tileWidth, int tileHeight);
-Result!Sound loadRawSound(IStr path, float volume, float pitch, bool isLooping);
+Result!Sound loadRawSound(IStr path, float volume, float pitch, bool canRepeat);
 
 Fault loadRawTextIntoBuffer(IStr path, ref LStr buffer);
 Result!LStr loadRawText(IStr path);
@@ -281,7 +281,7 @@ struct DrawOptions {
     Vec2 origin = Vec2(0.0f);
     Vec2 scale = Vec2(1.0f);
     float rotation = 0.0f;
-    Color color = white;
+    Rgba color = white;
     Hook hook = Hook.topLeft;
     Flip flip = Flip.none;
 }
@@ -315,8 +315,8 @@ struct FontId {
 }
 
 struct SoundId {
+    bool canRepeat();
     bool isPaused();
-    bool isLooping();
     bool isPlaying();
     float time();
     float duration();
