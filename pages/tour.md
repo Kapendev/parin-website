@@ -224,8 +224,8 @@ void drawTexture(TextureId texture, Vec2 position, DrawOptions options = DrawOpt
 void drawTextureArea(TextureId texture, Rect area, Vec2 position, DrawOptions options = DrawOptions());
 void drawTexturePatch(TextureId texture, Rect area, Rect target, bool isTiled, DrawOptions options = DrawOptions());
 void drawRune(FontId font, dchar rune, Vec2 position, DrawOptions options = DrawOptions());
-void drawText(FontId font, IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extraOptions = TextOptions());
-void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extraOptions = TextOptions());
+void drawText(FontId font, IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extra = TextOptions());
+void drawDebugText(IStr text, Vec2 position, DrawOptions options = DrawOptions(), TextOptions extra = TextOptions());
 void drawDebugEngineInfo(Vec2 position, DrawOptions options = DrawOptions());
 
 void drawViewport(Viewport viewport, Vec2 position, DrawOptions options = DrawOptions());
