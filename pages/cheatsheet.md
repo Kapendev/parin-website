@@ -111,18 +111,17 @@ void playSound(SoundId sound);
 void stopSound(SoundId sound);
 void pauseSound(SoundId sound);
 void resumeSound(SoundId sound);
-void updateSound(SoundId sound);
 
 // [Loading/Saving]
 TextureId loadTexture(IStr path);
 FontId loadFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 FontId loadFontFromTexture(IStr path, int tileWidth, int tileHeight);
-SoundId loadSound(IStr path, float volume, float pitch, bool canRepeat);
+SoundId loadSound(IStr path, float volume, float pitch, bool canRepeat = false, float pitchVariance = 1.0f);
 
 Result!Texture loadRawTexture(IStr path);
 Result!Font loadRawFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 Result!Font loadRawFontFromTexture(IStr path, int tileWidth, int tileHeight);
-Result!Sound loadRawSound(IStr path, float volume, float pitch, bool canRepeat);
+Result!Sound loadRawSound(IStr path, float volume, float pitch, bool canRepeat = false, float pitchVariance = 1.0f);
 
 Fault loadRawTextIntoBuffer(IStr path, ref LStr buffer);
 Result!LStr loadRawText(IStr path);
@@ -301,6 +300,9 @@ struct TextureId {
     void setFilter(Filter value);
     void setWrap(Wrap value);
     bool isValid();
+    TextureId validate(IStr message = defaultEngineValidateErrorMessage);
+    ref Texture get();
+    Texture getOr();
     void free();
 }
 
@@ -311,20 +313,31 @@ struct FontId {
     void setFilter(Filter value);
     void setWrap(Wrap value);
     bool isValid();
+    FontId validate(IStr message = defaultEngineValidateErrorMessage);
+    ref Font get();
+    Font getOr();
     void free();
 }
 
 struct SoundId {
+    float pitchVariance();
+    void setPitchVariance(float value);
+    float pitchVarianceBase();
+    void setPitchVarianceBase(float value);
     bool canRepeat();
-    bool isPaused();
     bool isPlaying();
+    bool isPaused();
     float time();
     float duration();
     float progress();
     void setVolume(float value);
     void setPitch(float value);
     void setPan(float value);
+    void setCanRepeat(bool value);
     bool isValid();
+    SoundId validate(IStr message = defaultEngineValidateErrorMessage);
+    ref Sound get();
+    Sound getOr();
     void free();
 }
 ```

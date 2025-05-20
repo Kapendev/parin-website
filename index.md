@@ -63,7 +63,7 @@ Create a new folder and run inside the following commands:
 
 ```cmd
 dub init -n
-dub run parin:setup
+dub run parin:setup -- -y
 dub run
 ```
 

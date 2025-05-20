@@ -17,7 +17,7 @@ To begin, make a new folder and run inside the following commands to create a ne
 
 ```cmd
 dub init -n
-dub run parin:setup
+dub run parin:setup -- -y
 ```
 
 If everything is set up correctly,
@@ -309,7 +309,6 @@ void playSound(Sound sound);
 void stopSound(Sound sound);
 void pauseSound(Sound sound);
 void resumeSound(Sound sound);
-void updateSound(Sound sound);
 ```
 
 Below are examples showing how to use these sound functions.
@@ -320,24 +319,7 @@ Below are examples showing how to use these sound functions.
     SoundId sound;
 
     bool update(float dt) {
-        updateSound(sound);
         if (Keyboard.space.isPressed) playSound(sound);
-        return false;
-    }
-    ```
-
-* Pausing and Resuming a Sound
-
-    ```d
-    SoundId sound;
-
-    bool update(float dt) {
-        updateSound(sound);
-        if (Keyboard.space.isPressed) playSound(sound);
-        if (Keyboard.esc.isPressed) {
-            if (sound.isPlaying) pauseSound(sound);
-            else resumeSound(sound);
-        }
         return false;
     }
     ```
@@ -351,12 +333,12 @@ These include:
 TextureId loadTexture(IStr path);
 FontId loadFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 FontId loadFontFromTexture(IStr path, int tileWidth, int tileHeight);
-SoundId loadSound(IStr path, float volume, float pitch, bool canRepeat);
+SoundId loadSound(IStr path, float volume, float pitch, bool canRepeat = false, float pitchVariance = 1.0f);
 
 Result!Texture loadRawTexture(IStr path);
 Result!Font loadRawFont(IStr path, int size, int runeSpacing, int lineSpacing, IStr32 runes = "");
 Result!Font loadRawFontFromTexture(IStr path, int tileWidth, int tileHeight);
-Result!Sound loadRawSound(IStr path, float volume, float pitch, bool canRepeat);
+Result!Sound loadRawSound(IStr path, float volume, float pitch, bool canRepeat = false, float pitchVariance = 1.0f);
 
 Fault loadRawTextIntoBuffer(IStr path, ref LStr buffer);
 Result!LStr loadRawText(IStr path);
