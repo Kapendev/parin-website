@@ -11,6 +11,7 @@ If you would like your project listed here, feel free to create an [issue](https
 
 ### 2025
 
+* [Worms Within](https://kapendev.itch.io/worms-within)
 * ...
 
 ### 2024
