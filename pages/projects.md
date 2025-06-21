@@ -22,7 +22,6 @@ If you would like your project listed here, feel free to create an [issue](https
 
 <br>
 Links:
-[Pages](./pages.html)
 [GitHub](https://github.com/Kapendev/parin)
 [X](https://x.com/Kapendev)
 [Bluesky](https://bsky.app/profile/kapendev.bsky.social)
